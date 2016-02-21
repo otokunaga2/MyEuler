@@ -12,20 +12,30 @@ module Solver
   	end
   	return true
   end
-  def calc_max_factor max_num
-    @i = max_num -1
-    max_prime = 1.0
-    while @i.to_i > 1
-      if prime?(@i.to_i) && (max_num % @i == 0) then
-        if max_prime < @i then
-          max_prime = @i.to_i #データの更新 
-          break
-        end 
-      end
-      @i= @i - 1
-    end
-    max_prime
+end
+class ConcreteSolver
+  include Solver
+  def initialize
+    p :init
+    @prime_list = []
   end
+  def calc_prime_list
+   for i in 2..1000000
+    if prime?(i)
+      @prime_list.push(i)
+    end
+   end
+  end
+  def calc_ans
+    i = 0
+    sum_prime = 0
+    while sum_prime < 2000000
+      sum_prime = @prime_list[i].to_i + sum_prime
+      i= i + 1
+    end
+    sum_prime
+  end
+    
 end
 #class Hoge
 #  include Problem
