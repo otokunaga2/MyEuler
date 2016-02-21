@@ -1,26 +1,37 @@
 #!/usr/bin/ruby
 
-three_multiple_number = 0 
-five_multiple_number = 0 
-both_multiple_number = 0
+module Solver
+  def prime? target_number
+    if(target_number == 1) then
+      return false
+    end
+    base_number = target_number
+    base_number = base_number - 1
 
-def calc(x,max_number)
-	@base_number = x
-	@sum = 0
-	while x < max_number do
-		@sum  = @sum + x
-		x = x + @base_number
-	end
-	@sum 
+    while base_number > 1 
+      if (target_number % base_number) == 0 then
+        return false
+      end
+      base_number = base_number - 1
+    end
+    return true
+  end
 end
+class ConcreteSolver
+  include Solver
+  def initialize
+    @prev_ans = 0
+    @prime_list = []
+  end
+  def calc_ans(i,sum)
+    if i > 2000000
+      return @prev_ans
+    end
 
-test = calc(3,10)
-p test
-test2 = calc(5,10)
-p test2
-three_multiple_number =  calc(3,1000)
-five_multiple_number =  calc(5,1000)
-both_multiple_number =  calc(15,1000)
-result = three_multiple_number + five_multiple_number - both_multiple_number
-p result
-
+    if (prime?(i)) then
+      @prev_ans = sum
+      sum = sum + i
+    end
+    return calc_ans(i+1,sum)
+  end
+end

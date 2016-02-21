@@ -2,34 +2,33 @@
 
 module Solver
   def prime? target_number
-  	base_number = target_number
+    base_number = target_number
     base_number = base_number - 1
-  	while base_number > 1 
-  		if (target_number % base_number) == 0 then
-  			return false
-  		end
-  		base_number = base_number - 1
-  	end
-  	return true
-  end
-  def calc_max_factor max_num
-    @i = max_num -1
-    max_prime = 1.0
-    while @i.to_i > 1
-      if prime?(@i.to_i) && (max_num % @i == 0) then
-        if max_prime < @i then
-          max_prime = @i.to_i #データの更新 
-          break
-        end 
-      end
-      @i= @i - 1
+    while base_number > 1 
+      if (target_number % base_number) == 0 then
+      return false
     end
-    max_prime
+      base_number = base_number - 1
+    end
+    return true
   end
 end
-#class Hoge
-#  include Problem
-#end
-#exec = Hoge.new
-#p exec.calc_prime(12) 
-#p exec.calc_max_factor(600851475143)
+class ConcreteSolver
+  include Solver
+  def initialize 
+    @ans_list = []
+  end
+  def max_factor_prime(i,n)
+    if i>n then
+      return @ans_list
+    end
+    if prime?(i) then
+      if (n%i) == 0 then
+        n = n/i 
+        @ans_list.push(i)
+        return max_factor_prime(i+1,n)
+      end
+    end
+    max_factor_prime(i+1,n)
+  end
+end

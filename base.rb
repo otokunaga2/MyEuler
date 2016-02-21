@@ -1,8 +1,36 @@
-#!/usr/bin/ruby
+#require 'bundler/setup'
+require 'test/unit'
 
-module Solver
+#自分自身の名前から問題の番号箇所を取り出し，requireする
+file_name = File.basename(__FILE__)
+target_problem = file_name.match(/\_(\w+)/)
+require "./"+target_problem[1]+".rb"
+
+class TestEuler < Test::Unit::TestCase
+  include Solver
+  class << self
+	  def startup
+      p "exec"
+	  end
+
+	  def cleanup
+	  end
+  end
+  def setup
+    @calc_instance = ConcreteSolver.new
+  end
+  def test_prime
+    assert_true(@calc_instance.prime?(2))
+  end
+
+  def test_prime
+    assert_true(@calc_instance.prime?(7))
+  end
+
+  def test_prime
+    assert_true(@calc_instance.prime?(7))
+  end
+  def test_ans
+    #assert_not_equal(0,@calc_instance.calc_ans(2,2))
+  end
 end
-
-def calc_prime target_number
-end
-
