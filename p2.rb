@@ -10,18 +10,17 @@ module Solver
   end
 end
 class ConcreteSolver
-
+  include Solver
   def calc_ans(i,sum)
-    if(sum > 4000000)
-    i = 0
-    even_sum = 0
-    while fib(i) < 4000000
-      if(fib(i).even?) then
-     		even_sum = fib(i) + even_sum 
-      end
-      i = i+1
+    if(sum > 4000000) then
+      return sum
     end
-    
-   even_sum 
+
+    if(fib(i).even?) then
+      sum = fib(i) + sum 
+    end
+    calc_ans(i+1,sum) 
+  end
+end
 
 
