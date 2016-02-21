@@ -7,22 +7,17 @@ target_problem = file_name.match(/\_(\w+)/)
 require "./"+target_problem[1]+".rb"
 
 class TestEuler < Test::Unit::TestCase
-  include Solver
+include Solver
   class << self
-	  def startup
-	  end
-
-	  def cleanup
-	  end
   end
-    def setup
-      @instance = ConcreteSolver.new
-    end
-	  def test_multiple_for_10
-      #assert_equal(2520,@instance.calc_ans(10))
-	  end
-
-	  def test_multiple_for_20
-      assert_equal(2520,@instance.calc_ans(20))
-	  end
+  def setup
+    @instance = ConcreteSolver.new
+  end
+  def test_multiple_for_10
+    assert_equal(2520,@instance.calc_ans(10))
+  end
+  
+  def test_multiple_for_20
+    assert_not_equal(2520,@instance.calc_ans(20))
+  end
 end
