@@ -29,6 +29,6 @@ class TestEuler < Test::Unit::TestCase
     end
 
     def test_ans
-      assert_equal([],@calc_instance.calc_ans)
+      assert_equal([200,375,425],@calc_instance.calc_ans)
     end
 end

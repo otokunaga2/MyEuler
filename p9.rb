@@ -39,7 +39,7 @@ class ConcreteSolver
       end
     end  
    end  
-   @ans
+   @ans.uniq! #重複する値を削除
   end
 end
   

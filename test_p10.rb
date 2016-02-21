@@ -35,6 +35,6 @@ class TestEuler < Test::Unit::TestCase
     assert_false(@calc_instance.prime?(100))
   end
   def test_ans
-    assert_not_equal(0,@calc_instance.calc_ans(2,2))
+    assert_not_equal(0,@calc_instance.calc_ans(1))
   end
 end

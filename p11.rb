@@ -58,7 +58,6 @@ class ConcreteSolver
     else
       return @sum
     end
-    #return calc_ans_xy(i+1,j+1) + calc_ans_xy(i,j+1) + calc_ans_xy(i+1,j)
   end
 
   def calc_ans_le_xy(i,j)
@@ -69,7 +68,6 @@ class ConcreteSolver
     else
       return @sum
     end
-    #return calc_ans_le_xy(i-1,j) + calc_ans_le_xy(i,j-1) + calc_ans_le_xy(i-1,j-1) 
   end
 end
 instance = ConcreteSolver.new

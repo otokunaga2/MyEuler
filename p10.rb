@@ -21,17 +21,29 @@ class ConcreteSolver
   include Solver
   def initialize
     @prev_ans = 0
-    @prime_list = []
+    @threads = []
   end
-  def calc_ans(i,sum)
-    if i > 2000000
-      return @prev_ans
+  def calc_ans(i)
+    sum = 0
+    counter = 0 
+    @threads << Thread.new do 
+      3.times do |ti|
+        if (ti == 0) then
+          counter = (2000000/3)*1
+          i = 0
+          else
+          i = counter
+          counter = counter + (2000000/3)*ti
+        end
+        while (i < counter) do
+          if (prime?(i)) then
+            @prev_ans = sum
+            sum = sum + i
+          end
+          i = i+1
+        end
+      end
     end
-
-    if (prime?(i)) then
-      @prev_ans = sum
-      sum = sum + i
-    end
-    return calc_ans(i+1,sum)
+    sum 
   end
 end
